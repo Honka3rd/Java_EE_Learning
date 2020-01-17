@@ -1,0 +1,91 @@
+package com.airline.model;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import com.airline.enums.PilotRank;
+
+/**
+ * Entity implementation class for Entity: Pilot
+ *
+ */
+// :id is a parameter stands for id
+@NamedQuery(name="Pilot.findById", query = "SELECT p FROM Pilot p WHERE p.id = :id")
+@Entity
+public class Pilot implements Serializable {
+
+	@Transient
+	private static final long serialVersionUID = 1L;
+
+	public Pilot() {
+		super();
+	}
+   
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private Integer license;
+	
+	@Enumerated(EnumType.STRING)
+	private PilotRank rank;
+	
+	@ManyToOne
+	@JoinColumn(name="FLIGHT_ID")
+	private Flight f;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Integer getLicense() {
+		return license;
+	}
+
+	public void setLicense(Integer license) {
+		this.license = license;
+	}
+
+	public PilotRank getRank() {
+		return rank;
+	}
+
+	public void setRank(PilotRank rank) {
+		this.rank = rank;
+	}
+
+	public Flight getF() {
+		return f;
+	}
+
+	public void setF(Flight f) {
+		this.f = f;
+	}
+	
+	
+}

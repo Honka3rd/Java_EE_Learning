@@ -1,0 +1,27 @@
+package com.airline.service;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import com.airline.model.Airplane;
+import com.airline.model.Flight;
+
+/**
+ * Session Bean implementation class FlightService
+ */
+@Stateless
+@LocalBean
+public class FlightService {
+
+    public FlightService() {}
+    
+    @PersistenceContext(unitName = "JPA_2")
+    EntityManager em;
+    
+    public void addFlight(Flight f, Airplane a){
+    	em.persist(a);
+    	em.persist(f);
+    }
+}

@@ -1,0 +1,77 @@
+package com.airline.service;
+
+import java.util.List;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import com.airline.enums.PilotRank;
+import com.airline.model.Airplane;
+import com.airline.model.Flight;
+import com.airline.model.Pilot;
+
+/**
+ * Session Bean implementation class FlightService
+ */
+@Stateless
+@LocalBean
+public class FlightService {
+
+	public FlightService() {
+	}
+
+	@PersistenceContext(unitName = "JPA_3")
+	EntityManager em;
+
+	public void addFlight(Flight f, Airplane a) {
+		em.persist(a);
+		em.persist(f);
+	}
+
+	public void addPilotToFlight(String pid, String fid) {
+		// query database by named query in Entity
+		TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById",
+				Flight.class);
+		fQuery.setParameter("id", Integer.parseInt(fid));
+		Flight f = fQuery.getSingleResult();
+
+		TypedQuery<Pilot> pQuery = em.createNamedQuery("Pilot.findById",
+				Pilot.class);
+		pQuery.setParameter("id", Integer.parseInt(pid));
+		Pilot p = pQuery.getSingleResult();
+
+		// change the queried objects here will affect data structure inside database without a persist call
+		List<Pilot> pList = f.getPilots();
+		pList.add(p);
+		f.setPilots(pList);
+		p.setF(f);
+	}
+
+	public void addPilotToFlightAnother(String fid) {
+		TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById",
+				Flight.class);
+		fQuery.setParameter("id", Integer.parseInt(fid));
+		Flight f = fQuery.getSingleResult();
+
+		Pilot p1 = new Pilot();
+		p1.setFirstName("OOO");
+		p1.setLastName("VPV");
+		p1.setLicense(1532);
+		p1.setRank(PilotRank.Junior_officer);
+
+		Pilot p2 = new Pilot();
+		p2.setFirstName("LLO");
+		p2.setLastName("UBV");
+		p2.setLicense(378);
+		p2.setRank(PilotRank.Junior_officer);
+
+		p1.setF(f);
+		p2.setF(f);
+
+		em.persist(p1);
+		em.persist(p2);
+	}
+}

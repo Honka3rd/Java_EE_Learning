@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\Users\014600002280\Desktop\Factory\Learn pack\Java\wokrspace\JEE_workspace\.metadata\.plugins\org.eclipse.jdt.core
+3765166367.index

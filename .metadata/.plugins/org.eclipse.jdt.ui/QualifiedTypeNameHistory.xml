@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.airline.service.PassengerService"/>
+<fullyQualifiedTypeName name="com.airline.model.Passenger"/>
+<fullyQualifiedTypeName name="com.airline.enums.Gender"/>
+<fullyQualifiedTypeName name="com.airline.enums.FlightClass"/>
+<fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="com.airline.model.Flight"/>
+<fullyQualifiedTypeName name="com.airline.enums.Cities"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.airline.model.Airplane"/>
+<fullyQualifiedTypeName name="com.airline.service.FlightService"/>
+<fullyQualifiedTypeName name="javax.ejb.EJB"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,36 @@
+package com.airline.model;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import com.airline.enums.Cities;
+
+/**
+ * Entity implementation class for Entity: Flight
+ *
+ */
+@Entity
+
+public class Flight implements Serializable {
+
+	@Transient
+	private static final long serialVersionUID = 1L;
+
+	public Flight() {
+		super();
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Column(name="FLIGHT_ORIGIN")
+	@Enumerated(EnumType.STRING)
+	private Cities fo;
+	
+	@Column(name="FLIGHT_DESTINATION")
+	@Enumerated(EnumType.STRING)
+	private Cities fd;
+   
+}

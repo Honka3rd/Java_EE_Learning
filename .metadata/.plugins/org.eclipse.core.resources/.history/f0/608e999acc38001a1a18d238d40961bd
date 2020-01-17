@@ -1,0 +1,35 @@
+package com.airline.service;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import com.airline.model.Airplane;
+import com.airline.model.Flight;
+import com.airline.model.Pilot;
+
+/**
+ * Session Bean implementation class FlightService
+ */
+@Stateless
+@LocalBean
+public class FlightService {
+
+    public FlightService() {}
+    
+    @PersistenceContext(unitName = "JPA_3")
+    EntityManager em;
+    
+    public void addFlight(Flight f, Airplane a){
+    	em.persist(a);
+    	em.persist(f);
+    }
+    
+    public void addPilotToFlight(String pid, String fid){
+    	// query database by named query in Entity
+    	TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById", Flight.class);
+    	fQuery.setParameter("id", Integer.parseInt(fid));
+    }
+}

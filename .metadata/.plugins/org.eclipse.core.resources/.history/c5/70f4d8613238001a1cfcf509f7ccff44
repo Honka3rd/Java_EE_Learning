@@ -1,0 +1,26 @@
+package com.airline.model;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Flight
+ *
+ */
+@Entity
+
+public class Flight implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
+
+	public Flight() {
+		super();
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+   
+}

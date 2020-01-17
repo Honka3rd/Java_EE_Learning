@@ -1,0 +1,83 @@
+package com.airline.controller;
+
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.airline.enums.Cities;
+import com.airline.enums.PilotRank;
+import com.airline.model.Flight;
+import com.airline.model.Pilot;
+import com.airline.service.PilotService;
+
+/**
+ * Servlet implementation class PilotController
+ */
+@WebServlet("/PilotController")
+public class PilotController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PilotController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+    @EJB
+    PilotService ps;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Pilot p1 = new Pilot();
+		p1.setFirstName("UU");
+		p1.setLastName("VVV");
+		p1.setLicense(1502);
+		p1.setRank(PilotRank.Captain);
+		
+		Pilot p2 = new Pilot();
+		p2.setFirstName("GG");
+		p2.setLastName("MMM");
+		p2.setLicense(1786);
+		p2.setRank(PilotRank.First_officer);
+		
+		Flight f = new Flight();
+		f.setFo(Cities.C);
+		f.setFd(Cities.B);
+		f.setPrice(500);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 2020);
+		int month = 9;
+		cal.set(Calendar.MONTH, month - 1);
+		cal.set(Calendar.DAY_OF_MONTH, 30);
+		cal.set(Calendar.HOUR, 3);
+		cal.set(Calendar.MINUTE, 45);
+		Date flightTime = cal.getTime();
+		f.setFlightTime(flightTime);
+		
+		p1.setF(f);
+		//p2.setF(f);
+		
+		ps.addPilot(p1);
+		ps.addPilot(p2);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
